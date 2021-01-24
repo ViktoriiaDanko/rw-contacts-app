@@ -21,13 +21,6 @@ const useStyles = makeStyles((theme) =>
 export const Contacts = () => {
   const classes = useStyles();
   const contacts = useContacts();
-  if (contacts.isLoading) {
-    return <div>...loading</div>;
-  }
-
-  if (contacts.isError) {
-    return <div>...error</div>;
-  }
 
   return (
     <Container className={classes.root}>
@@ -38,7 +31,16 @@ export const Contacts = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <ContactsTable data={contacts.data} />
+          {(() => {
+            //самовызывающаяся ф-ция
+            if (contacts.isLoading) {
+              return <div>...loading</div>;
+            }
+            if (contacts.isError) {
+              return <div>...error</div>;
+            }
+            return <ContactsTable data={contacts.data} />;
+          })()}
         </Grid>
       </Grid>
     </Container>
