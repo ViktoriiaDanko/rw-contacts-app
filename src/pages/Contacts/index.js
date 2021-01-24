@@ -4,11 +4,12 @@ import Container from "@material-ui/core/Container";
 import React from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles"; //createStyles - theme
 import { useContacts } from "./useContacts";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(4),
     },
   })
 );
@@ -26,9 +27,11 @@ export const Contacts = () => {
 
   return (
     <Container className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container>
         <Grid item xs={12}>
-          <div>Contacts</div>
+          <Typography variant="h4" component="h1">
+            Contacts
+          </Typography>
         </Grid>
         <Grid item xs={12}>
           <div>{contacts.data[0].name.first}</div>
