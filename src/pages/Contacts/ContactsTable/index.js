@@ -1,3 +1,4 @@
+import format from "date-fns/format";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -6,6 +7,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   table: {},
@@ -30,16 +33,26 @@ export const ContactsTable = ({ data }) => {
         </TableHead>
         <TableBody>
           {data.map((contact) => (
-            <TableRow key={contact.id.value}>
+            <TableRow key={contact.login.uuid}>
               <TableCell component="th" scope="row">
-                1
+                <Avatar alt="Remy Sharp" src={contact.picture.thumbnail} />
               </TableCell>
-              <TableCell align="right">2</TableCell>
-              <TableCell align="right">3</TableCell>
-              <TableCell align="right">4</TableCell>
-              <TableCell align="right">5</TableCell>
-              <TableCell align="right">6</TableCell>
-              <TableCell align="right">7</TableCell>
+              <TableCell>
+                {contact.name.title} {contact.name.first} {contact.name.last}
+              </TableCell>
+              <TableCell>
+                <Typography>
+                  {format(new Date(contact.dob.date), "MM/dd/yyyy")}
+                </Typography>
+                <Typography>
+                  {/* npm add date-fns */}
+                  {contact.dob.age} years
+                </Typography>
+              </TableCell>
+              <TableCell>4</TableCell>
+              <TableCell>5</TableCell>
+              <TableCell>6</TableCell>
+              <TableCell>7</TableCell>
             </TableRow>
           ))}
         </TableBody>
