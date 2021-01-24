@@ -1,4 +1,5 @@
 import format from "date-fns/format";
+import parseISO from "date-fns/parseISO";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -42,15 +43,17 @@ export const ContactsTable = ({ data }) => {
               </TableCell>
               <TableCell>
                 <Typography>
-                  {format(new Date(contact.dob.date), "MM/dd/yyyy")}
+                  {/* {format(new Date(contact.dob.date), "MM/dd/yyyy")} */}
+                  {/* if error - parseISO  */}
+                  {format(parseISO(contact.dob.date), "MM/dd/yyyy")}
                 </Typography>
                 <Typography>
                   {/* npm add date-fns */}
                   {contact.dob.age} years
                 </Typography>
               </TableCell>
-              <TableCell>4</TableCell>
-              <TableCell>5</TableCell>
+              <TableCell>{contact.phone}</TableCell>
+              <TableCell>{contact.email}</TableCell>
               <TableCell>6</TableCell>
               <TableCell>7</TableCell>
             </TableRow>
